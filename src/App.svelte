@@ -87,7 +87,6 @@
       lastUpdate: headerInfo.timestamp
     };
     subscription = await subscribeToEvents();
-    await connect();
   });
 
   onDestroy(async () => {
@@ -175,6 +174,14 @@
       <img src={'images/buddy.jpg'} alt="Buddy the Cat">
       <br /><br />
       <br /><br />
+    </div>
+    <br /><br />
+    <div>
+      {#if wallet}
+        <button on:click={disconnect}>Disconnect</button>
+      {:else}
+        <button on:click={connect}>Connect now!</button>
+      {/if}
     </div>
     <div>
       <button on:click={transfer}>Send 1 Tez to Mike for the Cat!</button>
