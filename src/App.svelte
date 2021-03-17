@@ -90,6 +90,7 @@
       lastUpdate: headerInfo.timestamp
     };
     subscription = await subscribeToEvents();
+    await connect();
   });
 
   onDestroy(async () => {
