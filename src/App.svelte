@@ -33,6 +33,7 @@
           rpcUrl
         }
       });
+      Tezos.setWalletProvider(wallet);
     } catch (err) {
       console.error(err);
     }
@@ -49,10 +50,6 @@
     const address = 'tz1cp2TFke4GdtSYVBtuTPfvawnemuaJwSno';
     const op = await Tezos.wallet.transfer({ to: address, amount: amount }).send();
     await op.confirmation();
-    op.confirmation()
-      .then((result) => {
-        console.log(result);
-      })
     success = true;
   }   
 
@@ -108,7 +105,7 @@
 
     .title {
       color: $tezos-blue;
-      font-size: 80px;
+      font-size: 60px;
       margin: 20px;
     }
 
@@ -169,31 +166,19 @@
 
 <main>
   <div class="container">
-    <!-- <div class="title">Send Tez to Mike!</div>
-    <br /> -->
-    <!-- {#if blockHead}
-      <div class="chain-info">
-        <p>Protocol: {blockHead.protocol}</p>
-        <p>Level: {blockHead.level}</p>
-        <p>Block timestamp: {blockHead.lastUpdate}</p>
-      </div>
-    {/if} -->
-    <!-- <br /> -->
-    <div>
+    <div class="title">
+      Mike wants Tez for his cat!
     </div>
-    <!-- <div>
-      {#if wallet}
-        <button on:click={disconnect}>Disconnect</button>
-      {:else}
-        <button on:click={connect}>Connect now!</button>
-      {/if}
-    </div> -->
-    <!-- <br /><br /> -->
+    <br />
+    <div>
+      <img src={'images/mike.jpg'} alt="Mike">
+      <br /><br />
+      <br /><br />
+    </div>
     <div>
       <button on:click={transfer}>Transfer 1 Tez to Mike, eh?!</button>
-      {#if success}
-         <div>Your transfer is successful!</div>
-         <div>Mike thanks you for the Tez!</div>
+      {#if success}         
+      <p>Mike thanks you for the Tez!</p>
       {/if}
     </div>
     <br /><br />
