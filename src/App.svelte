@@ -9,9 +9,8 @@
   let wallet: BeaconWallet;
   let subscription: HubConnection;
   let blockHead: { protocol: string; level: number; lastUpdate: string };
-  let confirmed: { confirmeation: string};
 
-  const rpcUrl = "https://api.tez.ie/rpc/edonet";
+  const rpcUrl = "https://api.tez.ie/rpc/mainnet";
   const packages: { name: string; display: string; version: number }[] = [
     { name: "svelte", display: "Svelte", version: 3 },
     { name: "webpack", display: "Webpack", version: 5 },
@@ -25,11 +24,11 @@
     try {
       wallet = new BeaconWallet({
         name: "Mike wants Tezos",
-        preferredNetwork: NetworkType.EDONET
+        preferredNetwork: NetworkType.MAINNET
       });
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.EDONET,
+          type: NetworkType.MAINNET,
           rpcUrl
         }
       });
@@ -44,16 +43,18 @@
   };
 
   let success = false;
-  const transfer = () => {
+  const transfer = async () => {
     const amount = 1;
     const address = 'tz1cp2TFke4GdtSYVBtuTPfvawnemuaJwSno';
-    console.log("I was here")
-    Tezos.contract
-    .transfer({ to: address, amount: amount })
-    .then((op) => {
-      return op.confirmation(1).then(() => success = true);    
-  })
-  }  
+    const op = await Tezos.wallet.transfer({ to: address, amount: amount }).send();
+    await op.confirmation();
+    op.confirmation()
+      .then((result) => {
+        console.log(result);
+      })
+    success = true;
+  }   
+
 
   const subscribeToEvents = async () => {
     const connection = new HubConnectionBuilder()
@@ -81,13 +82,14 @@
 
   onMount(async () => {
     Tezos = new TezosToolkit(rpcUrl);
-    const headerInfo = await Tezos.rpc.getBlockHeader();
-    blockHead = {
-      protocol: headerInfo.protocol,
-      level: headerInfo.level,
-      lastUpdate: headerInfo.timestamp
-    };
+    // const headerInfo = await Tezos.rpc.getBlockHeader();
+    // blockHead = {
+    //   protocol: headerInfo.protocol,
+    //   level: headerInfo.level,
+    //   lastUpdate: headerInfo.timestamp
+    // };
     subscription = await subscribeToEvents();
+    await connect();
   });
 
   onDestroy(async () => {
@@ -166,8 +168,8 @@
 
 <main>
   <div class="container">
-    <div class="title">Send Tez to Mike!</div>
-    <br />
+    <!-- <div class="title">Send Tez to Mike!</div>
+    <br /> -->
     <!-- {#if blockHead}
       <div class="chain-info">
         <p>Protocol: {blockHead.protocol}</p>
@@ -175,19 +177,19 @@
         <p>Block timestamp: {blockHead.lastUpdate}</p>
       </div>
     {/if} -->
-    <br />
+    <!-- <br /> -->
     <div>
     </div>
-    <div>
+    <!-- <div>
       {#if wallet}
         <button on:click={disconnect}>Disconnect</button>
       {:else}
         <button on:click={connect}>Connect now!</button>
       {/if}
-    </div>
-    <br /><br />
+    </div> -->
+    <!-- <br /><br /> -->
     <div>
-      <button on:click={transfer}>Transfer 1 Tez to Mike!</button>
+      <button on:click={transfer}>Transfer 1 Tez to Mike, eh?!</button>
       {#if success}
          <div>Your transfer is successful!</div>
          <div>Mike thanks you for the Tez!</div>
