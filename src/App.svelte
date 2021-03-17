@@ -184,8 +184,12 @@
     <br />
     <div>
       <button on:click={transfer}>Send 1 Tez to Mike for the Cat!</button>
-      {#if success}         
-      <p>Thank you for the Tez!</p>
+      {#if success} 
+      <div class="chain-info">        
+      <p>Thanks for the Tez!</p>
+      </div>
+      <img src={'images/buddy-says-thanks.jpg'} alt="Buddy says thanks!">
+      <br />
       {/if}
     </div>
     <br />
