@@ -169,12 +169,11 @@
     <div class="title">
       Mike wants Tez for his cat!
     </div>
-    <br />
     <div>
       <img src={'images/buddy.jpg'} alt="Buddy the Cat">
-      <br /><br />
+      <br />
     </div>
-    <br /><br />
+    <br />
     <div>
       {#if wallet}
         <button on:click={disconnect}>Disconnect your wallet!</button>
@@ -182,13 +181,21 @@
         <button on:click={connect}>Connect your wallet now!</button>
       {/if}
     </div>
-    <br /><br />
+    <br />
     <div>
       <button on:click={transfer}>Send 1 Tez to Mike for the Cat!</button>
       {#if success}         
       <p>Thank you for the Tez!</p>
       {/if}
     </div>
-    <br /><br />
+    <br />
+    {#if blockHead}
+      <div class="chain-info">
+        <p>Protocol: {blockHead.protocol}</p>
+        <p>Level: {blockHead.level}</p>
+        <p>Block timestamp: {blockHead.lastUpdate}</p>
+      </div>
+    {/if}
+    <br />
   </div>
 </main>
