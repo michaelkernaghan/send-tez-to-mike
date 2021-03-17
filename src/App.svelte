@@ -173,16 +173,16 @@
     <div>
       <img src={'images/buddy.jpg'} alt="Buddy the Cat">
       <br /><br />
-      <br /><br />
     </div>
     <br /><br />
     <div>
       {#if wallet}
-        <button on:click={disconnect}>Disconnect</button>
+        <button on:click={disconnect}>Disconnect your wallet!</button>
       {:else}
-        <button on:click={connect}>Connect now!</button>
+        <button on:click={connect}>Connect your wallet now!</button>
       {/if}
     </div>
+    <br /><br />
     <div>
       <button on:click={transfer}>Send 1 Tez to Mike for the Cat!</button>
       {#if success}         
