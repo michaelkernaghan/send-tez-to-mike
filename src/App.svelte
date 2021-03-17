@@ -141,6 +141,7 @@
       p {
         margin: 5px;
         font-style: italic;
+        color: $tezos-blue;
       }
     }
 
@@ -171,14 +172,14 @@
     </div>
     <br />
     <div>
-      <img src={'images/mike.jpg'} alt="Mike">
+      <img src={'images/buddy.jpg'} alt="Buddy the Cat">
       <br /><br />
       <br /><br />
     </div>
     <div>
-      <button on:click={transfer}>Transfer 1 Tez to Mike, eh?!</button>
+      <button on:click={transfer}>Send 1 Tez to Mike for the Cat!</button>
       {#if success}         
-      <p>Mike thanks you for the Tez!</p>
+      <p>Thank you for the Tez!</p>
       {/if}
     </div>
     <br /><br />
