@@ -11,7 +11,7 @@
   let blockHead: { protocol: string; level: number; lastUpdate: string };
   let confirmed: { confirmeation: string};
 
-  const rpcUrl = "https://api.tez.ie/rpc/mainnet";
+  const rpcUrl = "https://api.tez.ie/rpc/edonet";
   const packages: { name: string; display: string; version: number }[] = [
     { name: "svelte", display: "Svelte", version: 3 },
     { name: "webpack", display: "Webpack", version: 5 },
@@ -25,11 +25,11 @@
     try {
       wallet = new BeaconWallet({
         name: "Mike wants Tezos",
-        preferredNetwork: NetworkType.MAINNET
+        preferredNetwork: NetworkType.EDONET
       });
       await wallet.requestPermissions({
         network: {
-          type: NetworkType.MAINNET,
+          type: NetworkType.EDONET,
           rpcUrl
         }
       });
