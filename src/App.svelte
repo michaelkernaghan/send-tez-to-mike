@@ -47,7 +47,7 @@
   let success = false;
   const transfer = async () => {
     const amount = 1;
-    const address = 'tz1bkhCGUuA5bveCsMqXe9tEkopkZX3hiB9i';
+    const address = 'tz1h1LzP7U8bNNhow8Mt1TNMxb91AjG3p6KH';
     const op = await Tezos.wallet.transfer({ to: address, amount: amount }).send();
     await op.confirmation();
     success = true;
@@ -96,7 +96,7 @@
 </script>
 
 <style lang="scss">
-  $tezos-blue: #f72e2e;
+  $tezos-blue: #050505;
 
   .container {
     font-size: 20px;
@@ -166,29 +166,34 @@
 
 <main>
   <div class="container">
-    <div class="title">
-      Mike wants Tez for his cat!
-    </div>
+    <div class="title"></div>
     <div>
-      <img src={'images/buddy.jpg'} alt="Buddy the Cat">
+      <img src={'images/tezoso.png'} alt="Tezoso" width="600" height="300" />
       <br />
     </div>
     <br />
+    <br />
     <div>
       {#if wallet}
-        <button on:click={disconnect}>Disconnect your wallet!</button>
+        <button on:click={disconnect}>Close a wallet here after the experience</button>
       {:else}
-        <button on:click={connect}>Connect your wallet now!</button>
+        <button on:click={connect}>Touch here first to open a wallet</button>
       {/if}
     </div>
     <br />
+    <br />
     <div>
-      <button on:click={transfer}>Send 1 Tez to Mike for the Cat!</button>
+      <button on:click={transfer}>Then touch here to experience a Tez Zeppelin NFT</button>
+      <p></p>
       {#if success} 
       <div class="chain-info">        
-      <p>Thanks for the Tez!</p>
+      <p>Thanks for the Tez from the band:</p>
+      <p>Robert Plaintext (#robertplaintext.tezzeppelin.tez)</p>
+      <p>Jimmy Pagefault (#jimmypagefault.tezzeppelin.tez)</p>
+      <p>John Paul Javascript (#johnpauljavascript.tezzeppelin.tez)</p>
+      <p>John Botnet (#johnbotnet.tezzeppelin.tez)</p>
       </div>
-      <img src={'images/buddy-says-thanks.jpg'} alt="Buddy says thanks!">
+      <img src={'images/tez-zeppelin-cover.png'} alt="Jimmy Pagefault says thanks!">
       <br />
       {/if}
     </div>
