@@ -1,4 +1,4 @@
-# Svelte Tezos Template
+# Tez Zeppelin Implementation of the Svelte Tezos Template
 
 ## A Svelte template to build awesome dapps on Tezos!
 
